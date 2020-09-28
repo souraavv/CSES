@@ -13,8 +13,8 @@ Output
 Print n integers: for each node 1,2,.,n, the maximum distance to another node.
 
 Constraints
-1髇�2�105
-1骯,b髇
+1贸n贸2煤105
+1贸a,b贸n
 Example
 
 Input:
@@ -27,7 +27,7 @@ Input:
 Output:
 2 3 2 3 3
 
-Code : 
+Code : :
 #include <bits/stdc++.h>
 using namespace std;
  
