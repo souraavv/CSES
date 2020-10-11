@@ -52,7 +52,7 @@ int32_t main(){
 			dp[i][j] = 0;
 		}
 	}
-	// dp[i][j] : till jth index we have taken j heads and i - j tails.
+	// dp[i][j] : till ith index we have taken j heads and i - j tails.
 	// ans = summation of j = n / 2 + 1 till J < n;
 	dp[0][0] = 1;
 	for(int i = 0; i <= n; ++i) {
