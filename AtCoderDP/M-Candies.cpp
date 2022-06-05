@@ -56,12 +56,32 @@ int32_t main(){
         cin >> a[i];
     }
     vector<vector<int> > dp(n + 1, vector<int>(k + 1, 0));
+    // On the first child, if it can eat at max to a[0]
+    // I'm storing complete prefix sum at dp[0][j] which 
+    // consititute the number of ways for dp[0][j - 1] + ... so on
+    // I have total of k candies,
+    // If I want to left with j candies, then I have eaten k - j candies,
+    // I can only eat that if a[0] is alteast k - j
     
     for (int j = 0; j <= k; ++j) {
         dp[0][j] = a[0] >= k - j; // If I can hold more than j, then sure.
         dp[0][j] += (j - 1 >= 0 ? dp[0][j - 1] : 0);
         dp[0][j] %= mod;
     }
+    /*
+     * For remaining students, I have choice to left with j candies
+     * If this pos want to leave j candies, and if a[i] is the maximum
+     * candides this pos can consume, then prev position 
+     * can be left with min(k, j + a[i]) candidies, for all of these I have 
+     * transition, why ? see dp(i, j) <- dp(i - 1, j) + dp(i - 1, j + 1) + dp(i - 1, j + 2) ... + dp(i - 1, min(k, j + a[i]))
+     * Can you notice, we need prefix sum as this is continuous range, that why I am storing
+     * prefix sum in the dp i.e number of ways to left with (0, ..., j) candides on position
+     * i is store in dp(i, j)
+     * We have a range for which we need prefix sum, In our 
+     * case from [j, min(j + a[i], k]
+     * thus we take the dp(i - 1, j - 1) out.
+  
+    */
     for (int i = 1; i < n; ++i) {
         for (int j = 0; j <= k; ++j) {
             int end = min(k, j + a[i]);
